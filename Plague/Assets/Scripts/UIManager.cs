@@ -5,11 +5,11 @@ using UnityEngine;
 public class UIManager : MonoBehaviour
 {
     public Transform player;
-    public Transform camera;
+    public Transform playerCamera;
 
 
     void Update()
     {
-        camera.transform.position = new Vector3(player.position.x, player.position.y, camera.position.z);
+        playerCamera.transform.position = new Vector3(player.position.x, player.position.y, playerCamera.position.z);
     }
 }

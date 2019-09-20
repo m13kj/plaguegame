@@ -7,13 +7,11 @@ public class PlayerController : MonoBehaviour
 {
     public float movementSpeed = 1f;
 
-    [Space]
+    [Header ("Armor Status")]
     public float helmetStatus;
     public float chestStatus;
     public float legsStatus;
     public float armsStatus;
-
-    public Animator meleeWeapon;
 
     private bool onePunchForDeath;
     private bool isDeath;
@@ -27,8 +25,6 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        meleeWeapon.SetBool("Attack", Input.GetButtonDown("Attack"));
-
         onePunchForDeath = (helmetStatus * chestStatus * armsStatus * legsStatus > 0)? false : true;
         if(isDeath)
         {
