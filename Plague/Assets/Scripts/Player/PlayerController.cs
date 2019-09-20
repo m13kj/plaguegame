@@ -13,8 +13,9 @@ public class PlayerController : MonoBehaviour
     public float legsStatus;
     public float armsStatus;
 
-    public BoxCollider2D miliWeapon;
+    public Animator meleeWeapon;
 
+    private bool onePunchForDeath;
     private bool isDeath;
 
     Rigidbody2D rbody;
@@ -26,13 +27,9 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        miliWeapon.enabled = false;
-        if(Input.GetButtonDown("Fire1"))
-        {
-            miliWeapon.enabled = true;
-        }
+        meleeWeapon.SetBool("Attack", Input.GetButtonDown("Attack"));
 
-        isDeath = (helmetStatus * chestStatus * armsStatus * legsStatus > 0)? false : true;
+        onePunchForDeath = (helmetStatus * chestStatus * armsStatus * legsStatus > 0)? false : true;
         if(isDeath)
         {
             gameObject.SetActive(false);
@@ -48,6 +45,7 @@ public class PlayerController : MonoBehaviour
     {
         if(col.gameObject.CompareTag("Enemy"))
         {
+            if(onePunchForDeath) isDeath = true;
             float power     = col.gameObject.GetComponent<EnemyCommon>().power;
             int randomArmor = Random.Range(0, 4);
             switch(randomArmor)

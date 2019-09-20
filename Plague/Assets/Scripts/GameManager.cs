@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     {
         if(!GameObject.FindGameObjectWithTag("Enemy"))
         {
-            Instantiate(enemy, enemy.transform);
+            Instantiate(enemy, enemy.transform.position, Quaternion.identity);
         }
     }
 }

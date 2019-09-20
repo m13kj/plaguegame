@@ -4047,7 +4047,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56d7367911458c0479374ccb57a7d502, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 464806768813527390, guid: 16fd81ba753aed147b6617cff9159678, type: 3}
+  enemy: {fileID: 853541232398905369, guid: 16fd81ba753aed147b6617cff9159678, type: 3}
 --- !u!1 &1148522720
 GameObject:
   m_ObjectHideFlags: 0
@@ -4287,21 +4287,5 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 221604508191754366, guid: 47e3eb609c5b95d49a110aa54cf43cdf,
-        type: 3}
-      propertyPath: miliWeapon
-      value: 
-      objectReference: {fileID: 1669478806431277638}
-    - target: {fileID: 1669478806431277637, guid: 47e3eb609c5b95d49a110aa54cf43cdf,
-        type: 3}
-      propertyPath: m_TagString
-      value: Mili Weapon
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 47e3eb609c5b95d49a110aa54cf43cdf, type: 3}
---- !u!61 &1669478806431277638 stripped
-BoxCollider2D:
-  m_CorrespondingSourceObject: {fileID: 1669478806431277638, guid: 47e3eb609c5b95d49a110aa54cf43cdf,
-    type: 3}
-  m_PrefabInstance: {fileID: 221604507256048960}
-  m_PrefabAsset: {fileID: 0}

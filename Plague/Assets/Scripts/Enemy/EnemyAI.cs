@@ -21,7 +21,7 @@ abstract public class EnemyAI : MonoBehaviour
 
     void OnTriggerStay2D(Collider2D col)
     {
-        if(col.gameObject.CompareTag("Mili Weapon"))
+        if(col.gameObject.CompareTag("Weapon"))
         {
             Destroy(gameObject);
         }
