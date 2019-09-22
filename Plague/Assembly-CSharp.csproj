@@ -59,6 +59,7 @@
      <Compile Include="Assets\Scripts\Enemy\EnemyCommon.cs" />
      <Compile Include="Assets\Scripts\Enemy\WalkingPlagueAI.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
+     <Compile Include="Assets\Scripts\PlaguePoints.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerController.cs" />
      <Compile Include="Assets\Scripts\SaveData.cs" />
      <Compile Include="Assets\Scripts\SaveSystem.cs" />

@@ -8,13 +8,15 @@ public class PlayerController : MonoBehaviour
     public float movementSpeed = 1f;
 
     [Header ("Armor Status")]
-    public float helmetStatus;
-    public float chestStatus;
-    public float legsStatus;
-    public float armsStatus;
+    public int helmetStatus;
+    public int chestStatus;
+    public int legsStatus;
+    public int armsStatus;
 
-    private bool onePunchForDeath;
-    private bool isDeath;
+    private int   maxArmorStatus = 100;
+    private int   plaguePoints   = 0;
+    private bool  onePunchForDeath;
+    private bool  isDeath;
 
     Rigidbody2D rbody;
 
@@ -30,6 +32,7 @@ public class PlayerController : MonoBehaviour
         {
             gameObject.SetActive(false);
         }
+        RepairArmor();
     }
 
     void FixedUpdate()
@@ -42,7 +45,7 @@ public class PlayerController : MonoBehaviour
         if(col.gameObject.CompareTag("Enemy"))
         {
             if(onePunchForDeath) isDeath = true;
-            float power     = col.gameObject.GetComponent<EnemyCommon>().power;
+            int power       = col.gameObject.GetComponent<EnemyCommon>().power;
             int randomArmor = Random.Range(0, 4);
             switch(randomArmor)
             {
@@ -59,6 +62,55 @@ public class PlayerController : MonoBehaviour
                     armsStatus   -= power;
                     break;
             } 
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        if(col.gameObject.CompareTag("Plague Point"))
+        {
+            plaguePoints += col.gameObject.GetComponent<PlaguePoints>().GetPlaguePoints();
+            Destroy(col.gameObject);
+        }
+    }
+
+    public int GetPlaguePoints()
+    {
+        return plaguePoints;
+    }
+
+    void RepairArmor()
+    {
+        if(Input.GetButtonDown("Helmet Repair"))
+        {
+            RepairArmorPart(ref helmetStatus);
+        }
+        else if(Input.GetButtonDown("Chest Repair"))
+        {
+            RepairArmorPart(ref chestStatus);
+        }
+        else if(Input.GetButtonDown("Legs Repair"))
+        {
+            RepairArmorPart(ref legsStatus);
+        }
+        else if(Input.GetButtonDown("Arms Repair"))
+        {
+            RepairArmorPart(ref armsStatus);
+        }
+    }
+
+    void RepairArmorPart(ref int armorPart)
+    {
+        int toRepair = maxArmorStatus - armorPart;
+        if(plaguePoints - toRepair > 0)
+        {
+            plaguePoints -= toRepair;
+            armorPart    += toRepair;
+        }
+        else
+        {
+            armorPart   += plaguePoints;
+            plaguePoints = 0;
         }
     }
 

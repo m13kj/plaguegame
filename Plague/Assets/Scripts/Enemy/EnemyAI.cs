@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 abstract public class EnemyAI : MonoBehaviour
 {
@@ -19,13 +20,23 @@ abstract public class EnemyAI : MonoBehaviour
             Action();
     }
 
-    void OnTriggerStay2D(Collider2D col)
+    void OnTriggerEnter2D(Collider2D col)
     {
         if(col.gameObject.CompareTag("Weapon"))
         {
-            Destroy(gameObject);
+            WeaponHit();
         }
     }
 
+    virtual protected void WeaponHit()
+    {
+        if(--enemyCommon.hp <= 0)
+            {
+                int randomPlaguePoints = Random.Range(enemyCommon.minPlaguePoints, enemyCommon.maxPlaguePoints);
+                enemyCommon.plaguePoints = Instantiate(enemyCommon.plaguePoints.gameObject, transform.position, Quaternion.identity).GetComponent<PlaguePoints>();
+                enemyCommon.plaguePoints.SetPlaguePoints(randomPlaguePoints);
+                Destroy(gameObject);
+            }
+    }
     protected abstract void Action();
 }

@@ -4,7 +4,23 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public GameObject player;
     public GameObject enemy;
+    public UIManager  uiManager;
+
+
+    PlayerController playerController;
+
+    void Awake()
+    {
+        player = Instantiate(player, player.transform.position, Quaternion.identity);
+        playerController = player.GetComponent<PlayerController>();
+    }
+
+    void Start()
+    {
+        uiManager.SetPlayer(ref player);
+    }
 
     void Update()
     {

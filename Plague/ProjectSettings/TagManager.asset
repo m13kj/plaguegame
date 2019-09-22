@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - Weapon
+  - Plague Point
   layers:
   - Default
   - TransparentFX

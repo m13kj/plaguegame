@@ -120,5 +120,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b25040669bca4e419a51b7364d93b13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.5
+  hp: 2
   power: 1
+  speed: 0.5
+  plaguePoints: {fileID: 2223320233309347501, guid: aac1774270b3a114b8cf3b397bd61e56,
+    type: 3}
+  minPlaguePoints: 1
+  maxPlaguePoints: 5
