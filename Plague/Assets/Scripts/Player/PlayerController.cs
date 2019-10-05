@@ -18,15 +18,28 @@ public class PlayerController : MonoBehaviour
     private bool  onePunchForDeath;
     private bool  isDeath;
 
+    private float horizontalInput;
+    private float verticalInput;
+    private bool  back;
+
     Rigidbody2D rbody;
+    Animator    animator;
 
     private void Awake()
     {
-        rbody = GetComponent<Rigidbody2D>();
+        rbody    = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>(); 
     }
 
     void Update()
     {
+        horizontalInput = Input.GetAxis("Horizontal");
+        verticalInput   = Input.GetAxis("Vertical");
+        if(verticalInput > 0f) back = true;
+        else if(verticalInput < 0f) back = false; 
+        animator.SetFloat("Vertical", verticalInput);
+        animator.SetFloat("Horizontal", Mathf.Abs(horizontalInput));
+        animator.SetBool("Back", back);
         onePunchForDeath = (helmetStatus * chestStatus * armsStatus * legsStatus > 0)? false : true;
         if(isDeath)
         {
@@ -117,8 +130,6 @@ public class PlayerController : MonoBehaviour
     void Movement()
     {
         Vector2 currentPos    = rbody.position;
-        float horizontalInput = Input.GetAxis("Horizontal");
-        float verticalInput   = Input.GetAxis("Vertical");
         Vector2 inputVector   = new Vector2(horizontalInput, verticalInput);
         inputVector           = Vector2.ClampMagnitude(inputVector, 1);
         Vector2 movement      = inputVector * movementSpeed;
